@@ -177,12 +177,6 @@ namespace GamesToGo.Game.LocalGame
                             }
 
                                 break;
-                            case "Privacy":
-                            {
-                                token.Privacy = Enum.Parse<ElementPrivacy>(prop[1]);
-                            }
-
-                                break;
                         }
                     }
                 }
@@ -214,7 +208,7 @@ namespace GamesToGo.Game.LocalGame
                                 return false;
                             card = new Card
                             {
-                                ID = int.Parse(cInfo[1]),
+                                TypeID = int.Parse(cInfo[1]),
                                 Name = cInfo[2]
                             };
                         }
@@ -230,7 +224,7 @@ namespace GamesToGo.Game.LocalGame
                                 {
                                     card.Description = prop[1];
                                     break;
-                                }                                
+                                }
                                 case "Images":
                                 {
                                     int amm = int.Parse(prop[1]);
@@ -252,21 +246,11 @@ namespace GamesToGo.Game.LocalGame
                                     card.Size = new Vector2(float.Parse(xy[0]), float.Parse(xy[1]));
                                     break;
                                 }
-                                case "Privacy":
-                                {
-                                    card.Privacy = Enum.Parse<ElementPrivacy>(prop[1]);
-                                    break;
-                                }
-                                case "Orient":
-                                {
-                                    card.Orientation = Enum.Parse<ElementOrientation>(prop[1]);
-                                    break;
-                                }
                                 case "Events":
                                 {
                                     for(int j = 0; j< int.Parse(prop[1]); j++)
                                     {
-                                        h++;                                        
+                                        h++;
                                         cardLine = cardLines[h];
                                         var aamm = cardLine.Split("|");
                                         for(int k = 0; k < int.Parse(aamm.Last());k++)
@@ -309,7 +293,7 @@ namespace GamesToGo.Game.LocalGame
                                 return false;
                             tile = new Tile
                             {
-                                ID = int.Parse(tInfo[1]),
+                                TypeID = int.Parse(tInfo[1]),
                                 Name = tInfo[2]
                             };
                         }
@@ -405,7 +389,7 @@ namespace GamesToGo.Game.LocalGame
                                 return false;
                             board = new Board
                             {
-                                ID = int.Parse(tInfo[1]),
+                                TypeID = int.Parse(tInfo[1]),
                                 Name = tInfo[2]
                             };
                         }
@@ -473,7 +457,7 @@ namespace GamesToGo.Game.LocalGame
                 while(elementQueue.Count > 0)
                 {
                     int nextElement = elementQueue.Peek();
-                    Tile tile = GameTiles.FirstOrDefault(e => e.ID == nextElement);
+                    Tile tile = GameTiles.FirstOrDefault(e => e.TypeID == nextElement);
 
                     if (tile == null)
                         return false;
